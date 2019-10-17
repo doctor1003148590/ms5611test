@@ -79,8 +79,8 @@ int writeBytes(uint8_t devAddr, uint8_t length, uint8_t* data)
         fprintf(stderr, "Failed to write device(%d): %s\n", count, strerror(errno));
         close(fd);
         return -1;
-    } else if (count != length+1) {
-        fprintf(stderr, "Short write to device, expected %d, got %d\n", length+1, count);
+    } else if (count != length) {
+        fprintf(stderr, "Short write to device, expected %d, got %d\n", length, count);
         close(fd);
         return -1;
     }

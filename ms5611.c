@@ -84,7 +84,7 @@ void ReadProm()
 		{
 			printf("Failed to send PROM read request.\n");
 		}
-		if(readBytes(MS5611_ADDR,2,&buf)==0)
+		if(readBytes(MS5611_ADDR,2,&buf[2])==0)
 		{
 			c[i]=(buf[0]<<8) +  buf[1];
 			printf("Failed to read PROM data %d.\n",i);
@@ -108,7 +108,7 @@ uint32_t ReadAdc()
 		printf("Failed to send read ADC result command.\n");
 	}
 
-	if(readBytes(MS5611_ADDR,3,&buf)==0)
+	if(readBytes(MS5611_ADDR,3,&buf[3])==0)
 	{
 		adc=(buf[0]<<16) + (buf[1]<<8) + buf[2];
 	}
@@ -163,7 +163,6 @@ void GetCompensatedPressure()
 	off = off - off2;
 	sens = sens - sens2;
 	p=(d1*sens/2097152.0-off)/32768.0;
-	return p;
 }
 
 uint8_t WriteCommand(uint8_t devAddr,uint8_t data)
