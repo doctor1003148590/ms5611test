@@ -104,6 +104,7 @@ char ReadProm()
 		}
 		else
 			c[i]=(buf[0]<<8) +  buf[1];
+		printf("PROM data %d value is  %d.\n",i,c[i]);
 	}
 	return 1;
 }
