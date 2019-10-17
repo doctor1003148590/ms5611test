@@ -71,7 +71,7 @@ char ReadProm()
 			printf("Failed to send PROM read request.\n");
 			return 0;
 		}
-		if(readBytes(MS5611_ADDR,2,&buf[2])==0)
+		if(readBytes(MS5611_ADDR,2,&buf[0])==0)
 		{
 			printf("Failed to read PROM data %d.\n",i);
 			return 0;
@@ -126,13 +126,13 @@ long ReadAdc()
 		printf("Failed to send read ADC result command.\n");
 	}
 
-	/*if(readBytes(MS5611_ADDR,2,&buf[3])==0)
+	if(readBytes(MS5611_ADDR,3,&buf[0])==0)
 	{
 		printf("Failed to read ADC result.\n");
-	}*/
+	}
 	else
 	{
-		adc=buf[0]* (unsigned long)65536 + buf[1]* (unsigned long)256 + buf[2];
+		adc=(buf[0]<<16) + (buf[1]<<8) + buf[2];
 	}
 	return adc;
 }
