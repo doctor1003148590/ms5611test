@@ -117,7 +117,7 @@ void ms5611_update()
 // Input          : uint8_t address
 // Output         : uint32_t 3 bytes converted ADC data
 //=============================================================================
-uint32_t ReadAdc()
+long ReadAdc()
 {
 	long  adc=0;
 	uint8_t   buf[3]={0}; //buffer
@@ -126,10 +126,10 @@ uint32_t ReadAdc()
 		printf("Failed to send read ADC result command.\n");
 	}
 
-	if(readBytes(MS5611_ADDR,2,&buf[3])==0)
+	/*if(readBytes(MS5611_ADDR,2,&buf[3])==0)
 	{
 		printf("Failed to read ADC result.\n");
-	}
+	}*/
 	else
 	{
 		adc=buf[0]* (unsigned long)65536 + buf[1]* (unsigned long)256 + buf[2];

@@ -33,6 +33,6 @@ void ms5611_update();
 char ReadProm();
 void GetTemperature();
 void GetCompensatedPressure();
-uint32_t ReadAdc();
+long ReadAdc();
 
 #endif
