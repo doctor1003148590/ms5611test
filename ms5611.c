@@ -35,7 +35,7 @@ void ms5611_reset()
 {
 	printf(" Reseting ms5611... \n");
 	WriteCommand(MS5611_ADDR,CMD_RESET);  //reset ms5611
-	usleep(1000);
+	usleep(10000);
 
 }
 
@@ -49,20 +49,20 @@ void ms5611_update()
 	{
 		printf("Failed to send convert D1 pressure command.\n");
 	}
-	usleep(1000);
+	usleep(10000);
 	d1=ReadAdc();//read converted D1 pressure adc to d1
-	usleep(1000);
+	usleep(10000);
 
 	if (!WriteCommand(MS5611_ADDR,CMD_CONVERT_D2_OSR256))//convert D2 temperature
 	{
 		printf("Failed to send convert D2 temperature command.\n");
 	}
-	usleep(1000);
+	usleep(10000);
 	d2=ReadAdc();//read converted D2 temperature adc to d2
-	usleep(1000);
+	usleep(10000);
 
-	GetTemperature();
-	GetCompensatedPressure();
+	//GetTemperature();
+	//GetCompensatedPressure();
 }
 
 //=============================================================================
@@ -85,7 +85,7 @@ void ReadProm()
 			c[i]=(buf[0]<<8) +  buf[1];
 			printf("Failed to read PROM data %d.\n",i);
 		}
-		usleep(1000);
+		usleep(10000);
 	}
 }
 
