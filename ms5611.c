@@ -25,7 +25,7 @@ int32_t   p=0;      //temperature compensated pressure
 //=============================================================================
 void ms5611_init()
 {
-	printf("Initializing ms5611... \n");
+	printf("Initializing ... \n");
 	if(ms5611_reset()&&ReadProm())
 	{
 		printf("Ms5611 initialized.\n");;  //read ms5611 PROM values

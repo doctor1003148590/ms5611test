@@ -8,7 +8,7 @@ int main() {
 	ms5611_init();
 	while(1)
 	{
-		ms5611_update();
+//		ms5611_update();
 		printf("temperature = %d\tpressure = %d\n",temp,p);
 		usleep(20*1000);
 	}
