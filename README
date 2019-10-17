@@ -1,0 +1,19 @@
+ms5611test
+===================
+
+ms5611 over I2c for Orange Pi:
+
+This is a sample program for testing your ms5611 with Orange Pi.
+It does all the initialization and gathers:
+- pressure
+- temperature
+
+
+**Wiring**
+I2C uses only2 wires for data transmission: SCL and SDA
+OPi pin 1 (3.3V)   -> ms5611 module VCC
+OPi pin 6 (Ground) -> ms5611 module GND
+OPi pin 3          -> ms5611 module SDA
+OPi pin 5          -> ms5611 module SCL
+
+
