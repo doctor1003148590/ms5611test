@@ -26,7 +26,6 @@ int main()
 
 	if(ms5611_init())
 	{
-		ms5611_update();
 		while(1)
 		{
 			ms5611_update();
