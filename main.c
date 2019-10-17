@@ -4,7 +4,7 @@
 #include "ms5611.h"
 
 int main() {
-	printf(" This is the testing program of ms5611... \n");
+	printf("This is the testing program of ms5611... \n");
 	ms5611_init();
 	while(1)
 	{
