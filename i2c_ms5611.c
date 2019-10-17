@@ -36,12 +36,7 @@ int8_t readBytes(uint8_t devAddr, uint8_t length, uint8_t *data)
 int writeBytes(uint8_t devAddr, uint8_t* data)
 {
     int8_t count = 0;
-    int fd;
 
-    if (fd < 0) {
-        fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
-        return -1;
-    }
     if (ioctl(fd, I2C_SLAVE, devAddr) < 0) {
         fprintf(stderr, "Failed to select device: %s\n", strerror(errno));
         return -1;

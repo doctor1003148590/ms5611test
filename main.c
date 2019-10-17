@@ -11,14 +11,13 @@
 int main()
 {
 
-	printf("This is a testing program of ms5611 on Orange Pi... \n");
+	printf("This is a testing program for ms5611 on Orange Pi... \n");
     fd = open("/dev/i2c-0", O_RDWR);
     if (fd < 0)
     {
         fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
         return(-1);
     }
-
 
 	if(ms5611_init())
 	{
