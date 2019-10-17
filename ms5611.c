@@ -119,7 +119,7 @@ void ms5611_update()
 //=============================================================================
 uint32_t ReadAdc()
 {
-	uint32_t  adc=0;
+	long  adc=0;
 	uint8_t   buf[3]={0}; //buffer
 	if (writeBytes(MS5611_ADDR,CMD_ADC_READ)==-1)
 	{
@@ -132,7 +132,7 @@ uint32_t ReadAdc()
 	}
 	else
 	{
-		adc=buf[0]* (uint32_t)65536 + buf[1]* (uint32_t)256 + buf[2];
+		adc=buf[0]* (unsigned long)65536 + buf[1]* (unsigned long)256 + buf[2];
 	}
 	return adc;
 }
