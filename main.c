@@ -6,7 +6,7 @@
 
 #include "ms5611.h"
 
-    int fd;
+    int fd=-1;
 
 int main()
 {
@@ -29,6 +29,13 @@ int main()
 		}
 	}
 	else
-		close(fd);
+		if(close(fd))
+		{
+			printf("/dev/i2c-0 closed. \n");
+		}
+		else
+		{
+			printf("Failed to close /dev/i2c-0\n");
+		}
 		return 0;
 }
