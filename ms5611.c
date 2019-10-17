@@ -95,7 +95,7 @@ void ms5611_update()
 		printf("Failed to send convert D1 pressure command.\n");
 	}
 	usleep(10000);
-//	d1=ReadAdc();//read converted D1 pressure adc to d1
+	d1=ReadAdc();//read converted D1 pressure adc to d1
 	usleep(10000);
 
 	if (writeBytes(MS5611_ADDR,CMD_CONVERT_D2_OSR256)==-1)//convert D2 temperature
@@ -103,7 +103,7 @@ void ms5611_update()
 		printf("Failed to send convert D2 temperature command.\n");
 	}
 	usleep(10000);
-//	d2=ReadAdc();//read converted D2 temperature adc to d2
+	d2=ReadAdc();//read converted D2 temperature adc to d2
 	usleep(10000);
 
 	GetTemperature();
@@ -132,7 +132,7 @@ uint32_t ReadAdc()
 	}
 	else
 	{
-		adc=(buf[0]<<16) + (buf[1]<<8) + buf[2];
+		adc=buf[0]* (uint32_t)65536 + buf[1]* (uint32_t)256 + buf[2];
 	}
 	return adc;
 }
