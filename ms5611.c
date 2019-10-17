@@ -103,7 +103,7 @@ void ms5611_update()
 		printf("Failed to send convert D2 temperature command.\n");
 	}
 	usleep(10000);
-//	d2=ReadAdc();//read converted D2 temperature adc to d2
+	d2=ReadAdc();//read converted D2 temperature adc to d2
 	usleep(10000);
 
 	GetTemperature();
@@ -126,13 +126,13 @@ uint32_t ReadAdc()
 		printf("Failed to send read ADC result command.\n");
 	}
 
-	if(readBytes(MS5611_ADDR,3,&buf[3])==0)
+	if(readBytes(MS5611_ADDR,2,&buf[3])==0)
 	{
 		printf("Failed to read ADC result.\n");
 	}
 	else
 	{
-	//	adc=buf[0]* (unsigned long)65536 + buf[1]* (unsigned long)256 + buf[2];
+		adc=buf[0]* (unsigned long)65536 + buf[1]* (unsigned long)256 + buf[2];
 	}
 	return adc;
 }
