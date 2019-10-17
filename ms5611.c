@@ -45,7 +45,7 @@ char ms5611_reset()
 {
 	usleep(10000);
 	printf("Reseting ms5611... \n");
-	if(writeBytes(MS5611_ADDR,CMD_RESET))
+	if(!writeBytes(MS5611_ADDR,CMD_RESET))
 	{
 		printf("Ms5611 Reseted. \n");  //reset ms5611
 		return 1;
@@ -60,7 +60,7 @@ char ms5611_reset()
 //=============================================================================
 void ms5611_update()
 {
-	if (!writeBytes(MS5611_ADDR,CMD_CONVERT_D1_OSR256))//convert D1 pressure
+	if (writeBytes(MS5611_ADDR,CMD_CONVERT_D1_OSR256)==-1)//convert D1 pressure
 	{
 		printf("Failed to send convert D1 pressure command.\n");
 	}
@@ -68,7 +68,7 @@ void ms5611_update()
 	d1=ReadAdc();//read converted D1 pressure adc to d1
 	usleep(10000);
 
-	if (!writeBytes(MS5611_ADDR,CMD_CONVERT_D2_OSR256))//convert D2 temperature
+	if (writeBytes(MS5611_ADDR,CMD_CONVERT_D2_OSR256)==-1)//convert D2 temperature
 	{
 		printf("Failed to send convert D2 temperature command.\n");
 	}
@@ -99,10 +99,11 @@ char ReadProm()
 		}
 		if(readBytes(MS5611_ADDR,2,&buf[2])==0)
 		{
-			c[i]=(buf[0]<<8) +  buf[1];
 			printf("Failed to read PROM data %d.\n",i);
 			return 0;
 		}
+		else
+			c[i]=(buf[0]<<8) +  buf[1];
 	}
 	return 1;
 }
@@ -117,18 +118,18 @@ uint32_t ReadAdc()
 {
 	uint32_t  adc=0;
 	uint8_t   buf[3]={0}; //buffer
-	if (!writeBytes(MS5611_ADDR,CMD_ADC_READ))
+	if (writeBytes(MS5611_ADDR,CMD_ADC_READ)==-1)
 	{
 		printf("Failed to send read ADC result command.\n");
 	}
 
 	if(readBytes(MS5611_ADDR,3,&buf[3])==0)
 	{
-		adc=(buf[0]<<16) + (buf[1]<<8) + buf[2];
+		printf("Failed to read ADC result.\n");
 	}
 	else
 	{
-		printf("Failed to read ADC result.\n");
+		adc=(buf[0]<<16) + (buf[1]<<8) + buf[2];
 	}
 	return adc;
 }
