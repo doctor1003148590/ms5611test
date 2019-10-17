@@ -6,9 +6,10 @@
 
 #include "ms5611.h"
 
+    int fd;
+
 int main()
 {
-    int fd;
 
 	printf("This is a testing program of ms5611 on Orange Pi... \n");
     fd = open("/dev/i2c-0", O_RDWR);
