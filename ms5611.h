@@ -24,16 +24,8 @@
 //PROM Read commands
 #define CMD_PROM_READ_BASE     0xA0  // bit 4,3,2 make eight addresses from 0xA0 to 0xAE which is: 0xA0 0xA2 0xA4 0xA6 0xA8 0xAA 0xAC 0xAE
 
-#define DT_MIN                 -16776960
-#define DT_MAX                 16777216
-#define OFF_MIN                -8589672450
-#define OFF_MAX                12884705280
-#define SENS_MIN               -4294836225
-#define SENS_MAX               6442352640
-#define SEA_LEVEL_PRESSURE     1013.25 // sea-level atmospheric pressure on Earth
-
-extern float     temp;   //actual temperature
-extern float     p;      //temperature compensated pressure
+extern int32_t     temp;   //actual temperature
+extern int32_t     p;      //temperature compensated pressure
 
 void ms5611_init();
 void ms5611_reset();

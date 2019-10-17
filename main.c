@@ -9,7 +9,7 @@ int main() {
 	while(1)
 	{
 		ms5611_update();
-		printf("temperature = %2.1f\tpressure = %2.1f\n",temp,p);
+		printf("temperature = %d\tpressure = %d\n",temp,p);
 		usleep(20*1000);
 	}
 	return 0;

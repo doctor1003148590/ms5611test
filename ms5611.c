@@ -10,14 +10,14 @@
 #include "i2c_ms5611.h"
 
 //variables
-uint16_t  c[8]={0}; //values read from PROM
+uint16_t  c[7]={0}; //values read from PROM
 uint32_t  d1=0;     //Digital pressure value
 uint32_t  d2=0;     //Digital temperature value
-float     dt=0;     //difference between actual and reference temperature
-float     temp=0;   //actual temperature
-double    off=0;    //offset at actual temperature
-double    sens=0;   //sensitivity at actual temperature
-float     p=0;      //temperature compensated pressure
+int64_t   dt=0;     //difference between actual and reference temperature
+int32_t   temp=0;   //actual temperature
+int64_t   off=0;    //offset at actual temperature
+int64_t   sens=0;   //sensitivity at actual temperature
+int32_t   p=0;      //temperature compensated pressure
 
 //=============================================================================
 // Function Name  : ms5611_init
@@ -27,7 +27,7 @@ void ms5611_init()
 {
 	printf(" Initializing ms5611... \n");
 	ms5611_reset();
-	ReadProm();  //read ms5611 PROM values
+//	ReadProm();  //read ms5611 PROM values
 	printf(" Ms5611 initialized!\n");
 }
 
@@ -76,6 +76,7 @@ void ReadProm()
 	uint8_t buf[2]={0}; //buffer
 	for (i=0;i<=6;i++)
 	{
+		usleep(10000);
 		if (!WriteCommand(MS5611_ADDR,CMD_PROM_READ_BASE+2*i))
 		{
 			printf("Failed to send PROM read request.\n");
@@ -85,7 +86,6 @@ void ReadProm()
 			c[i]=(buf[0]<<8) +  buf[1];
 			printf("Failed to read PROM data %d.\n",i);
 		}
-		usleep(10000);
 	}
 }
 
