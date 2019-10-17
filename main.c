@@ -29,7 +29,7 @@ int main()
 		}
 	}
 	else
-		if(close(fd))
+		if(!close(fd))
 		{
 			printf("/dev/i2c-0 closed. \n");
 		}

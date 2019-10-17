@@ -33,7 +33,6 @@ void ms5611_update();
 char ReadProm();
 void GetTemperature();
 void GetCompensatedPressure();
-uint8_t WriteCommand(uint8_t devAddr, uint8_t data);
 uint32_t ReadAdc();
 
 #endif

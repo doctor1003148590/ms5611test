@@ -33,7 +33,7 @@ int8_t readBytes(uint8_t devAddr, uint8_t length, uint8_t *data)
 }
 
 
-int writeBytes(uint8_t devAddr, uint8_t* data)
+int writeBytes(uint8_t devAddr, uint8_t data)
 {
     int8_t count = 0;
 
@@ -42,7 +42,7 @@ int writeBytes(uint8_t devAddr, uint8_t* data)
         return -1;
     }
 
-    count = write(fd, data, 1);
+    count = write(fd, &data, 1);
     if (count < 0) {
         fprintf(stderr, "Failed to write device(%d): %s\n", count, strerror(errno));
         return -1;
