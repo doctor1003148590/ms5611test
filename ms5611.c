@@ -103,11 +103,11 @@ void ms5611_update()
 		printf("Failed to send convert D2 temperature command.\n");
 	}
 	usleep(10000);
-	d2=ReadAdc();//read converted D2 temperature adc to d2
+//	d2=ReadAdc();//read converted D2 temperature adc to d2
 	usleep(10000);
 
-	//GetTemperature();
-	//GetCompensatedPressure();
+	GetTemperature();
+	GetCompensatedPressure();
 }
 
 
