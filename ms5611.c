@@ -180,5 +180,5 @@ void GetCompensatedPressure()
 
 uint8_t WriteCommand(uint8_t devAddr,uint8_t data)
 {
-	return writeBytes(devAddr,1,&data);
+	return writeBytes(devAddr,&data);
 }

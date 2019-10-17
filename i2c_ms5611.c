@@ -44,19 +44,10 @@ int8_t readBytes(uint8_t devAddr, uint8_t length, uint8_t *data)
 }
 
 
-int writeBytes(uint8_t devAddr, uint8_t length, uint8_t* data)
+int writeBytes(uint8_t devAddr, uint8_t* data)
 {
     int8_t count = 0;
-    uint8_t buf[128];
     int fd;
-
-#ifdef DEBUG
-    printf("write %#x\n",devAddr);
-#endif
-    if (length > 127) {
-        fprintf(stderr, "Byte write count (%d) > 127\n", length);
-        return -1;
-    }
 
     fd = open("/dev/i2c-0", O_RDWR);
     if (fd < 0) {
@@ -68,14 +59,14 @@ int writeBytes(uint8_t devAddr, uint8_t length, uint8_t* data)
         close(fd);
         return -1;
     }
-    memcpy(buf,data,length);
-    count = write(fd, buf, length);
+
+    count = write(fd, data, 1);
     if (count < 0) {
         fprintf(stderr, "Failed to write device(%d): %s\n", count, strerror(errno));
         close(fd);
         return -1;
-    } else if (count != length) {
-        fprintf(stderr, "Short write to device, expected %d, got %d\n", length, count);
+    } else if (count != 1) {
+        fprintf(stderr, "Short write to device, expected %d, got %d\n", 1, count);
         close(fd);
         return -1;
     }
