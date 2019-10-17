@@ -10,10 +10,41 @@ It does all the initialization and gathers:
 
 
 **Wiring**
-I2C uses only2 wires for data transmission: SCL and SDA
 OPi pin 1 (3.3V)   -> ms5611 module VCC
 OPi pin 6 (Ground) -> ms5611 module GND
 OPi pin 3          -> ms5611 module SDA
 OPi pin 5          -> ms5611 module SCL
+
+**clone the code**
+  git clone https://github.com/doctor1003148590/ms5611test.git
+
+**Make and run**
+  cd ms5611test
+  make
+  sudo ./ms5611test
+
+**output**
+
+This is a testing program for ms5611 on Orange Pi...
+Initializing ...
+Reseting ms5611...
+Ms5611 Reseted.
+Reading PROM...
+PROM data 0 value is  84.
+PROM data 1 value is  52521.
+PROM data 2 value is  51798.
+PROM data 3 value is  32285.
+PROM data 4 value is  28947.
+PROM data 5 value is  30948.
+PROM data 6 value is  28011.
+Ms5611 initialized .
+temperature = 2189      pressure = 101999
+temperature = 2189      pressure = 101999
+temperature = 2191      pressure = 102003
+temperature = 2189      pressure = 101999
+temperature = 2191      pressure = 102016
+...
+
+
 
 
