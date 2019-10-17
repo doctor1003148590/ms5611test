@@ -27,7 +27,7 @@
 extern int32_t     temp;   //actual temperature
 extern int32_t     p;      //temperature compensated pressure
 
-void ms5611_init();
+char ms5611_init();
 char ms5611_reset();
 void ms5611_update();
 char ReadProm();

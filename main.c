@@ -5,12 +5,15 @@
 
 int main() {
 	printf("This is the testing program of ms5611... \n");
-	ms5611_init();
-	while(1)
+	if(ms5611_init())
 	{
-//		ms5611_update();
-		printf("temperature = %d\tpressure = %d\n",temp,p);
-		usleep(20*1000);
+		while(1)
+		{
+			ms5611_update();
+			printf("temperature = %d\tpressure = %d\n",temp,p);
+			usleep(20*1000);
+		}
 	}
-	return 0;
+	else
+		return 0;
 }

@@ -23,21 +23,22 @@ int32_t   p=0;      //temperature compensated pressure
 // Function Name  : ms5611_init
 // Description    : reset ms5611 and read PROM values
 //=============================================================================
-void ms5611_init()
+char ms5611_init()
 {
 	printf("Initializing ... \n");
 	if(!ms5611_reset())
 	{
 		printf("Ms5611 reset failed.\n");  //read ms5611 PROM values
-		return;
+		return 0;
 	}
 	if(!ReadProm())
 	{
 		printf("Read proms failed.\n");
-		return;
+		return 0;
 	}
 	else
 		printf("Ms5611 initialized .\n");
+	return 1;
 }
 
 char ms5611_reset()
