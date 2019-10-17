@@ -11,8 +11,8 @@
 
 //variables
 uint16_t  c[7]={0}; //values read from PROM
-uint32_t  d1=0;     //Digital pressure value
-uint32_t  d2=0;     //Digital temperature value
+long  d1=0;     //Digital pressure value
+long  d2=0;     //Digital temperature value
 int64_t   dt=0;     //difference between actual and reference temperature
 int32_t   temp=0;   //actual temperature
 int64_t   off=0;    //offset at actual temperature
@@ -132,7 +132,7 @@ uint32_t ReadAdc()
 	}
 	else
 	{
-		adc=buf[0]* (unsigned long)65536 + buf[1]* (unsigned long)256 + buf[2];
+	//	adc=buf[0]* (unsigned long)65536 + buf[1]* (unsigned long)256 + buf[2];
 	}
 	return adc;
 }
