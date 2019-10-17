@@ -25,18 +25,26 @@ int32_t   p=0;      //temperature compensated pressure
 //=============================================================================
 void ms5611_init()
 {
-	printf(" Initializing ms5611... \n");
-	ms5611_reset();
-//	ReadProm();  //read ms5611 PROM values
-	printf(" Ms5611 initialized!\n");
+	printf("Initializing ms5611... \n");
+	if(ms5611_reset()&&ReadProm())
+	{
+		printf("Ms5611 initialized.\n");;  //read ms5611 PROM values
+	}
+	else
+		printf("Ms5611 initializition failed .\n");
 }
 
-void ms5611_reset()
+char ms5611_reset()
 {
-	printf(" Reseting ms5611... \n");
-	WriteCommand(MS5611_ADDR,CMD_RESET);  //reset ms5611
 	usleep(10000);
-
+	printf("Reseting ms5611... \n");
+	if(WriteCommand(MS5611_ADDR,CMD_RESET))
+	{
+		printf("Ms5611 Reseted. \n");  //reset ms5611
+		return 1;
+	}
+	else
+		return 0;
 }
 
 //=============================================================================
@@ -69,7 +77,7 @@ void ms5611_update()
 // Function Name  : ReadProms
 // Description    : read the PROM from address 0~7
 //=============================================================================
-void ReadProm()
+char ReadProm()
 {
 	printf(" Reading PROM... \n");
 	uint8_t i=0;
@@ -80,13 +88,16 @@ void ReadProm()
 		if (!WriteCommand(MS5611_ADDR,CMD_PROM_READ_BASE+2*i))
 		{
 			printf("Failed to send PROM read request.\n");
+			return 0;
 		}
 		if(readBytes(MS5611_ADDR,2,&buf[2])==0)
 		{
 			c[i]=(buf[0]<<8) +  buf[1];
 			printf("Failed to read PROM data %d.\n",i);
+			return 0;
 		}
 	}
+	return 1;
 }
 
 //=============================================================================
