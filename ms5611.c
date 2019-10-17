@@ -55,32 +55,6 @@ char ms5611_reset()
 }
 
 //=============================================================================
-// Function Name  : ms5611_update
-// Description    : update d1 and d2 data
-//=============================================================================
-void ms5611_update()
-{
-	if (writeBytes(MS5611_ADDR,CMD_CONVERT_D1_OSR256)==-1)//convert D1 pressure
-	{
-		printf("Failed to send convert D1 pressure command.\n");
-	}
-	usleep(10000);
-	d1=ReadAdc();//read converted D1 pressure adc to d1
-	usleep(10000);
-
-	if (writeBytes(MS5611_ADDR,CMD_CONVERT_D2_OSR256)==-1)//convert D2 temperature
-	{
-		printf("Failed to send convert D2 temperature command.\n");
-	}
-	usleep(10000);
-	d2=ReadAdc();//read converted D2 temperature adc to d2
-	usleep(10000);
-
-	//GetTemperature();
-	//GetCompensatedPressure();
-}
-
-//=============================================================================
 // Function Name  : ReadProms
 // Description    : read the PROM from address 0~7
 //=============================================================================
@@ -108,6 +82,34 @@ char ReadProm()
 	}
 	return 1;
 }
+
+//=============================================================================
+// Function Name  : ms5611_update
+// Description    : update d1 and d2 data
+//=============================================================================
+void ms5611_update()
+{
+
+	if (writeBytes(MS5611_ADDR,CMD_CONVERT_D1_OSR256)==-1)//convert D1 pressure
+	{
+		printf("Failed to send convert D1 pressure command.\n");
+	}
+	usleep(10000);
+//	d1=ReadAdc();//read converted D1 pressure adc to d1
+	usleep(10000);
+
+	if (writeBytes(MS5611_ADDR,CMD_CONVERT_D2_OSR256)==-1)//convert D2 temperature
+	{
+		printf("Failed to send convert D2 temperature command.\n");
+	}
+	usleep(10000);
+//	d2=ReadAdc();//read converted D2 temperature adc to d2
+	usleep(10000);
+
+	GetTemperature();
+	GetCompensatedPressure();
+}
+
 
 //=============================================================================
 // Function Name  : ReadAdc
