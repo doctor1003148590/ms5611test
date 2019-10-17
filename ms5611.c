@@ -86,13 +86,13 @@ void ms5611_update()
 //=============================================================================
 char ReadProm()
 {
-	printf(" Reading PROM... \n");
+	printf("Reading PROM... \n");
 	uint8_t i=0;
 	uint8_t buf[2]={0}; //buffer
 	for (i=0;i<=6;i++)
 	{
 		usleep(10000);
-		if (!writeBytes(MS5611_ADDR,CMD_PROM_READ_BASE+2*i))
+		if (writeBytes(MS5611_ADDR,CMD_PROM_READ_BASE+2*i)==-1)
 		{
 			printf("Failed to send PROM read request.\n");
 			return 0;
