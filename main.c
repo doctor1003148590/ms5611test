@@ -1,8 +1,5 @@
 #include <unistd.h>
-#include <stdint.h>
 #include <stdio.h>
-#include <math.h>
-#include <time.h>
 
 #include "ms5611.h"
 

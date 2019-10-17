@@ -1,17 +1,12 @@
 
 #include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
 #include <sys/ioctl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <linux/i2c-dev.h>
 #include "i2c_ms5611.h"
-
 
 //Default timeout value for read operations. Set to 0 to disable timeout detection.
 uint16_t readTimeout = 0;
