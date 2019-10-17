@@ -106,8 +106,8 @@ void ms5611_update()
 	d2=ReadAdc();//read converted D2 temperature adc to d2
 	usleep(10000);
 
-	GetTemperature();
-	GetCompensatedPressure();
+	//GetTemperature();
+	//GetCompensatedPressure();
 }
 
 
